@@ -1,0 +1,323 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Design Tokens — Light theme (default)
+   ============================================================ */
+:root,
+[data-theme="light"] {
+  /* Backgrounds */
+  --color-bg: #f7f8fa;
+  --color-bg-alt: #ffffff;
+  --color-bg-card: #ffffff;
+  --color-bg-elevated: #ffffff;
+
+  /* Text */
+  --color-text: #1a1d2e;
+  --color-text-secondary: #4a5070;
+  --color-text-muted: #6b7290;
+
+  /* Accent — warm violet / indigo */
+  --color-accent: #6d4df5;
+  --color-accent-soft: #8b78ff;
+  --color-accent-bg: rgba(109, 77, 245, 0.08);
+  --color-accent-border: rgba(109, 77, 245, 0.25);
+
+  /* Secondary accent — warm navy */
+  --color-navy: #1e2a4a;
+  --color-charcoal: #2a2d3a;
+
+  /* Borders & shadows */
+  --color-border: #e4e7ee;
+  --color-border-subtle: #eef0f5;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(20, 25, 50, 0.06);
+  --shadow-lg: 0 12px 40px rgba(20, 25, 50, 0.08);
+  --shadow-accent: 0 8px 24px rgba(109, 77, 245, 0.18);
+
+  /* Hero gradient overlay */
+  --gradient-mesh: radial-gradient(
+      ellipse 80% 50% at 50% -10%,
+      rgba(109, 77, 245, 0.12),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 90% 20%,
+      rgba(30, 42, 74, 0.06),
+      transparent
+    );
+
+  /* Fonts */
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+}
+
+/* ============================================================
+   Design Tokens — Dark theme
+   ============================================================ */
+[data-theme="dark"] {
+  --color-bg: #0d1017;
+  --color-bg-alt: #141823;
+  --color-bg-card: #1a1f2e;
+  --color-bg-elevated: #1e2433;
+
+  --color-text: #e8eaf0;
+  --color-text-secondary: #a8b0c4;
+  --color-text-muted: #6b7290;
+
+  --color-accent: #8b78ff;
+  --color-accent-soft: #a394ff;
+  --color-accent-bg: rgba(139, 120, 255, 0.1);
+  --color-accent-border: rgba(139, 120, 255, 0.3);
+
+  --color-navy: #2a3450;
+  --color-charcoal: #1a1f2e;
+
+  --color-border: #2a3142;
+  --color-border-subtle: #232a3b;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.3);
+  --shadow-accent: 0 8px 24px rgba(139, 120, 255, 0.2);
+
+  --gradient-mesh: radial-gradient(
+      ellipse 80% 50% at 50% -10%,
+      rgba(139, 120, 255, 0.1),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 90% 20%,
+      rgba(42, 52, 80, 0.15),
+      transparent
+    );
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* ============================================================
+   Scrollbar
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* ============================================================
+   Typography helpers
+   ============================================================ */
+.font-display {
+  font-family: var(--font-display);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* ============================================================
+   Section shell
+   ============================================================ */
+.section-padding {
+  padding: 6rem 1.5rem;
+}
+
+/* ============================================================
+   Container
+   ============================================================ */
+.container-max {
+  max-width: 1200px;
+  margin-inline: auto;
+  width: 100%;
+}
+
+/* ============================================================
+   Accent text & gradient text
+   ============================================================ */
+.text-accent {
+  color: var(--color-accent);
+}
+
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    var(--color-accent) 0%,
+    var(--color-accent-soft) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ============================================================
+   Section heading eyebrow label
+   ============================================================ */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: var(--color-accent);
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: var(--color-accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 0.6rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-soft);
+  box-shadow: var(--shadow-accent);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: transparent;
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 0.6rem;
+  border: 1px solid var(--color-border);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   Cards
+   ============================================================ */
+.card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--color-accent-border);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ============================================================
+   Animated gradient border (used for hero visual)
+   ============================================================ */
+.gradient-border {
+  position: relative;
+  border-radius: 1.5rem;
+  background: linear-gradient(
+    135deg,
+    var(--color-accent),
+    var(--color-accent-soft)
+  );
+  padding: 1.5px;
+}
+
+/* ============================================================
+   Utility — clamp text sizes
+   ============================================================ */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* ============================================================
+   Reduced motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   Responsive section padding
+   ============================================================ */
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 7rem 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding: 8rem 2rem;
+  }
+}
